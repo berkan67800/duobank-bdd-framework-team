@@ -1,5 +1,6 @@
 package com.duobank.stepDefinitions;
 
+import com.duobank.utilities.ConfigReader;
 import com.duobank.utilities.Driver;
 import io.cucumber.java.*;
 import org.openqa.selenium.OutputType;
@@ -16,6 +17,7 @@ public class Hooks {
 
         Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         Driver.getDriver().manage().window().maximize();
+        Driver.getDriver().get(ConfigReader.getProperty("url"));
 
 
     }
