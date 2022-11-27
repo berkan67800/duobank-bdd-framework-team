@@ -19,7 +19,7 @@ public class MortgageApplicationPage {
 
 
     @FindBy(xpath = "//input[@id='realtorinfo']")
-    public WebElement nameOfRealtor;
+    public WebElement infoOfRealtorField;
 
     @FindBy(xpath = "//label[@for='loanofficer1']")
     public WebElement yesForLoanOfficer;
@@ -60,8 +60,9 @@ public class MortgageApplicationPage {
     @FindBy(xpath = "//a[normalize-space()='Next']")
     public WebElement nextButton;
 
-    @FindBy(xpath = "//h6[normalize-space()='Personal Information']")
-    public WebElement personalInformationText;
+    @FindBy(xpath = "//div[@class='borrower']")
+    public WebElement borrowerInfoDIV;
+
 
 
 

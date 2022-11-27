@@ -1,4 +1,4 @@
-@mortgageApplication @regression
+ @regression
 Feature:  Mortgage Application feature
 
 
@@ -14,11 +14,11 @@ Feature:  Mortgage Application feature
       And I click the next button
     Then  I should be able to see Personal Information text
 
-
-  #Scenario: Fill the preapproval form with negative information
-   # When  I enter negative answers to the preapproval form
-   # And   I click the next button
-    #Then  I should not be able to navigate to the next step
+  @mortgageApplication
+  Scenario: Fill the preapproval form with negative information
+    When  I enter invalid information to the preapproval form
+    And   I click the next button
+    Then  I should not be able to navigate to the Personal Information step
 
 
 

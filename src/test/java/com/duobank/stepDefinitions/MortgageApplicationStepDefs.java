@@ -2,20 +2,9 @@ package com.duobank.stepDefinitions;
 
 import com.duobank.pages.DashBoardPage;
 import com.duobank.pages.MortgageApplicationPage;
-import com.duobank.utilities.Driver;
-import com.duobank.utilities.SeleniumUtils;
-import io.cucumber.java.bs.A;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
-
-import java.util.Set;
 
 public class MortgageApplicationStepDefs {
 
@@ -66,10 +55,25 @@ public class MortgageApplicationStepDefs {
     public void i_click_the_next_button() {
         mortgageApplicationPage.nextButton.click();
     }
-    @Then("I should be able to see {string} text")
-    public void i_should_be_able_to_see_text(String string) {
 
-        Assert.assertTrue(mortgageApplicationPage.personalInformationText.isDisplayed());
+    @Then("I should be able to see Personal Information text")
+    public void i_should_be_able_to_see_personal_information_text() {
+        MortgageApplicationPage mortgageApplicationPage1 = new MortgageApplicationPage();
+        Assert.assertTrue(mortgageApplicationPage1.borrowerInfoDIV.isDisplayed());
+    }
+
+
+    @When("I enter invalid information to the preapproval form")
+    public void i_enter_invalid_information_to_the_preapproval_form() throws InterruptedException {
+        MortgageApplicationPage mortgageApplicationPage = new MortgageApplicationPage();
+        mortgageApplicationPage.infoOfRealtorField.sendKeys("＜script＞alert(12)＜/script＞");
+        mortgageApplicationPage.estimatedPurchasePriceField.sendKeys("600000");
+        Thread.sleep(700);
+        mortgageApplicationPage.downPaymentAmount.sendKeys("60000");
+    }
+    @Then("I should not be able to navigate to the Personal Information step")
+    public void i_should_not_be_able_to_navigate_to_the_next_step() {
+        Assert.assertTrue(!(mortgageApplicationPage.borrowerInfoDIV.isDisplayed()));
     }
 
 
