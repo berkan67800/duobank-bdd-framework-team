@@ -1,10 +1,12 @@
-@login
+@login @regression
 Feature: Login feature
 
   Scenario: Login with valid credentials
     Given I navigate to the Login page
     When I enter valid login credentials
     Then I should be able to login and land on Loan Application page
+
+
 
 
 #  Scenario: Login with invalid credentials
