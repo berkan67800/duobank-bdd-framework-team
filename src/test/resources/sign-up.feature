@@ -1,4 +1,3 @@
-
 @signup @regression
 Feature: Sign Up feature
 
