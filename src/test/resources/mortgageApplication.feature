@@ -9,6 +9,19 @@ Feature:  Mortgage Application feature
     And I click Mortgage Application option from the left menu
 
 
+  Scenario: Fill the preapproval form
+    When  I add valid information to the preapproval form
+      And I click the next button
+    Then  I should be able to see Personal Information text
+
+
+  #Scenario: Fill the preapproval form with negative information
+   # When  I enter negative answers to the preapproval form
+   # And   I click the next button
+    #Then  I should not be able to navigate to the next step
+
+
+
   Scenario: Enter valid Estimated Purchase Price and valid Down Payment Amount
     When I enter Estimated Purchase Price as $ 4000 and Down Payment Amount as $ 300
     Then I should be able to see the correct result in the loan amount text bar
