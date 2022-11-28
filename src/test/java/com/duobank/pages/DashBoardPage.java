@@ -15,7 +15,7 @@ public class DashBoardPage {
     @FindBy(xpath = "//span[@class='user-name']")
     public WebElement fullNameText;
 
-    @FindBy(xpath = "//span[.='Mortgage Application']")
+    @FindBy(xpath = "//li[@class='active']/a")
     public WebElement mortgageApplicationLink;
 
 
