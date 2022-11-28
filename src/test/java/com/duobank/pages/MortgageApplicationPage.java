@@ -63,6 +63,37 @@ public class MortgageApplicationPage {
     @FindBy(xpath = "//div[@class='borrower']")
     public WebElement borrowerInfoDIV;
 
+    @FindBy(id = "b_firstName")
+    public WebElement borrowerFistNameField;
+
+    @FindBy(id = "b_lastName")
+    public WebElement borrowerLastNameField;
+
+    @FindBy(id = "b_email")
+    public WebElement borrowerEmailField;
+
+    @FindBy(id = "b_ssn")
+    public WebElement borrowerSSNField;
+
+    @FindBy(id = "b_cell")
+    public WebElement borrowerCellField;
+
+    @FindBy(id = "b_marital")
+    public WebElement borrowerMaritalStatusField;
+
+    @FindBy(id = "b_dob")
+    public WebElement borrowerDOBField;
+
+
+    @FindBy(xpath = "//li[@class='current']//span[@class='d-block']")
+    public WebElement applicationWizardCurrentStep;
+
+
+
+
+
+
+
 
 
 

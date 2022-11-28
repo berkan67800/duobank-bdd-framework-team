@@ -2,17 +2,23 @@ package com.duobank.stepDefinitions;
 
 import com.duobank.pages.DashBoardPage;
 import com.duobank.pages.MortgageApplicationPage;
+import com.duobank.utilities.SeleniumUtils;
+import com.github.javafaker.Faker;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
 
 public class MortgageApplicationStepDefs {
 
     MortgageApplicationPage mortgageApplicationPage = new MortgageApplicationPage();
+    Faker faker = new Faker();
 
     @Then("I click Mortgage Application option from the left menu")
     public void i_click_mortgage_application_option_from_the_left_menu() {
-            new DashBoardPage().mortgageApplicationLink.click();
+
+        SeleniumUtils.jsClick(new DashBoardPage().mortgageApplicationLink);
     }
 
         @When("I enter Estimated Purchase Price as $ {int} and Down Payment Amount as $ {int}")
@@ -74,6 +80,23 @@ public class MortgageApplicationStepDefs {
     @Then("I should not be able to navigate to the Personal Information step")
     public void i_should_not_be_able_to_navigate_to_the_next_step() {
         Assert.assertTrue(!(mortgageApplicationPage.borrowerInfoDIV.isDisplayed()));
+    }
+
+    @When("I enter valid information to the Personal Information form")
+    public void i_enter_valid_information_to_the_personal_information_form() {
+        mortgageApplicationPage.borrowerFistNameField.sendKeys(faker.name().firstName());
+        mortgageApplicationPage.borrowerLastNameField.sendKeys(faker.name().lastName());
+        mortgageApplicationPage.borrowerEmailField.sendKeys(faker.internet().emailAddress());
+        mortgageApplicationPage.borrowerDOBField.sendKeys("12121990");
+        mortgageApplicationPage.borrowerSSNField.sendKeys("123456789");
+        Select maritalStatus = new Select(mortgageApplicationPage.borrowerMaritalStatusField);
+        maritalStatus.selectByVisibleText("Married");
+        mortgageApplicationPage.borrowerCellField.sendKeys("555555555");
+
+ }
+    @Then("I should be able to navigate to the Expenses step")
+    public void i_should_be_able_to_navigate_to_the_expenses_step() {
+         Assert.assertTrue(SeleniumUtils.elementExists(mortgageApplicationPage.applicationWizardCurrentStep,1));
     }
 
 
