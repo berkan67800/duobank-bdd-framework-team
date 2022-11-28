@@ -63,6 +63,15 @@ public class MortgageApplicationPage {
     @FindBy(xpath = "//div[@class='borrower']")
     public WebElement borrowerInfoDIV;
 
+    @FindBy(xpath = "//label[@for='coborrower1']")
+    public WebElement yesForCoBorrower;
+
+    @FindBy(xpath = "//span[@id='select2-b_suffix-container']")
+    public WebElement selectSuffixField;
+
+    //@FindBy(xpath = "//span[@title='Sr.']")
+    //@FindBy(xpath = "//li[@id='select2-b_suffix-result-8ou7-Jr.']")
+
     @FindBy(id = "b_firstName")
     public WebElement borrowerFistNameField;
 
@@ -89,8 +98,32 @@ public class MortgageApplicationPage {
     public WebElement applicationWizardCurrentStep;
 
 
+    @FindBy(id = "c_firstName")
+    public WebElement coBorrowerFistNameField;
 
+    @FindBy(id = "c_lastName")
+    public WebElement coBorrowerLastNameField;
 
+    @FindBy(id = "c_email")
+    public WebElement coBorrowerEmailField;
+
+    @FindBy(id = "c_ssn")
+    public WebElement coBorrowerSSNField;
+
+    @FindBy(id = "c_cell")
+    public WebElement coBorrowerCellField;
+
+    @FindBy(id = "c_marital")
+    public WebElement coBorrowerMaritalStatusField;
+
+    @FindBy(id = "c_dob")
+    public WebElement coBorrowerDOBField;
+
+    @FindBy(xpath = "//a[normalize-space()='Next']")
+    public WebElement personalINformationNextButton;
+
+    @FindBy(xpath = "//h6[normalize-space()='Current Monthly Housing Expenses']")
+    public WebElement currentMonthlyHousingExpensesText;
 
 
 

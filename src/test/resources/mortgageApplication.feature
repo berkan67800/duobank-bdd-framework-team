@@ -39,5 +39,10 @@ Feature:  Mortgage Application feature
     Then  I should be able to navigate to the Expenses step
 
 
-
+  Scenario: Fill the Personal Information form with invalid information
+    When  I add valid information to the preapproval form
+    And   I click the next button
+    When  I enter invalid information to the Personal Information form
+    And   I click the next button
+    Then  I should not be able to navigate to the Expenses step
 

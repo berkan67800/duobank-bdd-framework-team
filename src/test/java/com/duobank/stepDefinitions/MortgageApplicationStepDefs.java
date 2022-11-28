@@ -6,8 +6,10 @@ import com.duobank.utilities.SeleniumUtils;
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.Select;
 
 public class MortgageApplicationStepDefs {
@@ -98,6 +100,43 @@ public class MortgageApplicationStepDefs {
     public void i_should_be_able_to_navigate_to_the_expenses_step() {
          Assert.assertTrue(SeleniumUtils.elementExists(mortgageApplicationPage.applicationWizardCurrentStep,1));
     }
+
+
+    @When("I enter invalid information to the Personal Information form")
+    public void i_enter_invalid_information_to_the_personal_information_form() throws InterruptedException {
+    mortgageApplicationPage.yesForCoBorrower.click();
+    mortgageApplicationPage.borrowerFistNameField.sendKeys("00000");
+    mortgageApplicationPage.borrowerLastNameField.sendKeys("00000");
+    Thread.sleep(700);
+        // Select suffix = new Select(mortgageApplicationPage.selectSuffixField);
+         //suffix.selectByVisibleText("Jr.");
+    mortgageApplicationPage.borrowerEmailField.sendKeys("000@00");
+    mortgageApplicationPage.borrowerSSNField.sendKeys("000-00-0000");
+    Thread.sleep(1000);
+        Select maritalStatus = new Select(mortgageApplicationPage.borrowerMaritalStatusField);
+        maritalStatus.selectByVisibleText("Divorced");
+    mortgageApplicationPage.borrowerCellField.sendKeys("000-00-0000");
+    Thread.sleep(500);
+    mortgageApplicationPage.coBorrowerFistNameField.sendKeys("99999");
+    mortgageApplicationPage.coBorrowerLastNameField.sendKeys("22222");
+    mortgageApplicationPage.coBorrowerEmailField.sendKeys("***@***");
+    mortgageApplicationPage.coBorrowerDOBField.sendKeys("02022000");
+    mortgageApplicationPage.coBorrowerSSNField.sendKeys("000-00-0000");
+        Select maritalStatus2 = new Select(mortgageApplicationPage.coBorrowerMaritalStatusField);
+        maritalStatus2.selectByVisibleText("Separated");
+    mortgageApplicationPage.coBorrowerCellField.sendKeys("000-000-0000");
+    Thread.sleep(800);
+
+    }
+
+    @Then("I should not be able to navigate to the Expenses step")
+    public void i_should_not_be_able_to_navigate_to_the_expenses_step() {
+        Assert.assertTrue(!(mortgageApplicationPage.currentMonthlyHousingExpensesText.isDisplayed()));
+
+    }
+
+
+
 
 
 
