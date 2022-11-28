@@ -119,20 +119,20 @@ public class MortgageApplicationStepDefs {
     Thread.sleep(500);
     mortgageApplicationPage.coBorrowerFistNameField.sendKeys("99999");
     mortgageApplicationPage.coBorrowerLastNameField.sendKeys("22222");
-    mortgageApplicationPage.coBorrowerEmailField.sendKeys("***@***");
+    mortgageApplicationPage.coBorrowerEmailField.sendKeys("000@000");
     mortgageApplicationPage.coBorrowerDOBField.sendKeys("02022000");
     mortgageApplicationPage.coBorrowerSSNField.sendKeys("000-00-0000");
         Select maritalStatus2 = new Select(mortgageApplicationPage.coBorrowerMaritalStatusField);
         maritalStatus2.selectByVisibleText("Separated");
     mortgageApplicationPage.coBorrowerCellField.sendKeys("000-000-0000");
-    Thread.sleep(800);
+    Thread.sleep(1500);
 
     }
 
     @Then("I should not be able to navigate to the Expenses step")
-    public void i_should_not_be_able_to_navigate_to_the_expenses_step() {
+    public void i_should_not_be_able_to_navigate_to_the_expenses_step() throws InterruptedException {
         Assert.assertTrue(!(mortgageApplicationPage.currentMonthlyHousingExpensesText.isDisplayed()));
-
+        Thread.sleep(1500);
     }
 
 
