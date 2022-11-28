@@ -2,6 +2,7 @@ package com.duobank.stepDefinitions;
 
 import com.duobank.pages.DashBoardPage;
 import com.duobank.pages.MortgageApplicationPage;
+import com.duobank.utilities.Driver;
 import com.duobank.utilities.SeleniumUtils;
 import com.github.javafaker.Faker;
 import io.cucumber.java.en.Then;
@@ -66,7 +67,6 @@ public class MortgageApplicationStepDefs {
 
     @Then("I should be able to see Personal Information text")
     public void i_should_be_able_to_see_personal_information_text() {
-        //MortgageApplicationPage mortgageApplicationPage1 = new MortgageApplicationPage();
         Assert.assertTrue(mortgageApplicationPage.coBorroweInformationText.isDisplayed());
     }
 
@@ -130,11 +130,21 @@ public class MortgageApplicationStepDefs {
 
     @Then("I should not be able to navigate to the Expenses step")
     public void i_should_not_be_able_to_navigate_to_the_expenses_step()  {
-        Assert.assertTrue(!(mortgageApplicationPage.currentMonthlyHousingExpensesText.isDisplayed()));
+        Assert.assertFalse(mortgageApplicationPage.currentMonthlyHousingExpensesText.isDisplayed());
     }
 
 
+    @When("I fill the Expenses step and click next button")
+    public void i_fill_the_expenses_step_and_click_next_button() {
+        mortgageApplicationPage.monthlyRentalPaymentField.sendKeys("3000");
+        mortgageApplicationPage.nextButton.click();
 
+    }
+    @Then("I should be able to land Employment and Income step")
+    public void i_should_be_able_to_land_employment_and_income_step() {
+        Assert.assertTrue(Driver.getDriver().getPageSource().contains("Co-Borrower Employment Information"));
+
+    }
 
 
 

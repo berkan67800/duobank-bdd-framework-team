@@ -46,3 +46,11 @@ Feature:  Mortgage Application feature
     And   I click the next button
     Then  I should not be able to navigate to the Expenses step
 
+  Scenario: Fill the Expenses step
+    Given I add valid information to the preapproval form
+    And   I click the next button
+    When  I enter valid information to the Personal Information form
+    And   I click the next button
+    And   I should be able to navigate to the Expenses step
+    When  I fill the Expenses step and click next button
+    Then  I should be able to land Employment and Income step

@@ -126,6 +126,11 @@ public class MortgageApplicationPage {
     @FindBy(xpath = "//div[@class='co-borrower']//h6[@class='py-50']")
     public WebElement coBorroweInformationText;
 
+    @FindBy(xpath = "//input[@id='monthlyrentalpayment']")
+    public WebElement monthlyRentalPaymentField;
+
+    @FindBy(xpath = "//h6[normalize-space()='Borrower Employment Information']")
+    public WebElement borrowerEmploymentInfoText;
 
 
 }
