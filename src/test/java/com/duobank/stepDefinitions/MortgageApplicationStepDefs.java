@@ -107,7 +107,7 @@ public class MortgageApplicationStepDefs {
           mortgageApplicationPage.yesForCoBorrower.click();
           mortgageApplicationPage.borrowerFistNameField.sendKeys("00000");
           mortgageApplicationPage.borrowerLastNameField.sendKeys("00000");
-          mortgageApplicationPage.borrowerEmailField.sendKeys("000000");
+          mortgageApplicationPage.borrowerEmailField.sendKeys("000@000");
           mortgageApplicationPage.borrowerSSNField.sendKeys("000-00-0000");
           mortgageApplicationPage.borrowerDOBField.sendKeys("00000000");
 
@@ -117,7 +117,7 @@ public class MortgageApplicationStepDefs {
           mortgageApplicationPage.borrowerCellField.sendKeys("000-00-0000");
           mortgageApplicationPage.coBorrowerFistNameField.sendKeys("99999");
           mortgageApplicationPage.coBorrowerLastNameField.sendKeys("22222");
-          mortgageApplicationPage.coBorrowerEmailField.sendKeys("0000000");
+          mortgageApplicationPage.coBorrowerEmailField.sendKeys("000@000");
           mortgageApplicationPage.coBorrowerDOBField.sendKeys("02022000");
           mortgageApplicationPage.coBorrowerSSNField.sendKeys("000-00-0000");
 
@@ -130,7 +130,7 @@ public class MortgageApplicationStepDefs {
 
     @Then("I should not be able to navigate to the Expenses step")
     public void i_should_not_be_able_to_navigate_to_the_expenses_step()  {
-        Assert.assertTrue(SeleniumUtils.elementExists(mortgageApplicationPage.applicationWizardCurrentStep,1));
+        Assert.assertTrue(!(mortgageApplicationPage.currentMonthlyHousingExpensesText.isDisplayed()));
     }
 
 

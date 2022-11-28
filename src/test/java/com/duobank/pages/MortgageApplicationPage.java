@@ -126,7 +126,8 @@ public class MortgageApplicationPage {
     public WebElement currentMonthlyHousingExpensesText;
 
 
-
+    @FindBy(xpath = "//h6[normalize-space()='Personal Information']")
+    public WebElement personalInformationText;
 
 
 
