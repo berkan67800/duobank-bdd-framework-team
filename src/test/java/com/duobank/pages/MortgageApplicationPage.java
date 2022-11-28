@@ -69,9 +69,6 @@ public class MortgageApplicationPage {
     @FindBy(xpath = "//span[@id='select2-b_suffix-container']")
     public WebElement selectSuffixField;
 
-    //@FindBy(xpath = "//span[@title='Sr.']")
-    //@FindBy(xpath = "//li[@id='select2-b_suffix-result-8ou7-Jr.']")
-
     @FindBy(id = "b_firstName")
     public WebElement borrowerFistNameField;
 
@@ -126,8 +123,8 @@ public class MortgageApplicationPage {
     public WebElement currentMonthlyHousingExpensesText;
 
 
-    @FindBy(xpath = "//h6[normalize-space()='Personal Information']")
-    public WebElement personalInformationText;
+    @FindBy(xpath = "//div[@class='co-borrower']//h6[@class='py-50']")
+    public WebElement coBorroweInformationText;
 
 
 

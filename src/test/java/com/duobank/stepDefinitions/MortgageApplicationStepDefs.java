@@ -66,8 +66,8 @@ public class MortgageApplicationStepDefs {
 
     @Then("I should be able to see Personal Information text")
     public void i_should_be_able_to_see_personal_information_text() {
-        MortgageApplicationPage mortgageApplicationPage1 = new MortgageApplicationPage();
-        Assert.assertTrue(mortgageApplicationPage1.borrowerInfoDIV.isDisplayed());
+        //MortgageApplicationPage mortgageApplicationPage1 = new MortgageApplicationPage();
+        Assert.assertTrue(mortgageApplicationPage.coBorroweInformationText.isDisplayed());
     }
 
 
