@@ -146,6 +146,32 @@ public class MortgageApplicationStepDefs {
 
     }
 
+    @When("I fill the Employment and Income step with valid information")
+    public void i_fill_the_employment_and_income_step_with_valid_information() throws InterruptedException {
+    mortgageApplicationPage.employerName.sendKeys("Tom Sawyer");
+    mortgageApplicationPage.employerPosition.sendKeys("Tester");
+    mortgageApplicationPage.employerCity.sendKeys("Fairfax");
+      Select state = new Select(mortgageApplicationPage.employerState);
+      state.selectByVisibleText("AL");
+    mortgageApplicationPage.employerStartDate.sendKeys("09.01.2010");
+    mortgageApplicationPage.grossMonthlyIncome.sendKeys("4500");
+    Select incomeSource = new Select(mortgageApplicationPage.additionalIncome);
+    incomeSource.selectByVisibleText("Social Security/Disability Income");
+    mortgageApplicationPage.incomeAmount.sendKeys("700");
+    Thread.sleep(1000);
+    }
+    @Then("I should be able to land Credit Report step")
+    public void i_should_be_able_to_land_credit_report_step() {
 
+    Assert.assertTrue(Driver.getDriver().getPageSource().contains("Would you like to order a credit report to help us verify your eligibility for this loan ?"));
+
+       // String actualResult = mortgageApplicationPage.messageForCreditReport.getText();
+       // Assert.assertEquals("Would you like to order a credit report to help us verify your eligibility for this loan ?", actualResult);
+
+        //String actualResult = new DashBoardPage().fullNameText.getText();
+        //Assert.assertEquals(firstName+" "+lastName,actualResult);
+
+
+    }
 
 }

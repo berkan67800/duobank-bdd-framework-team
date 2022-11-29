@@ -132,5 +132,35 @@ public class MortgageApplicationPage {
     @FindBy(xpath = "//h6[normalize-space()='Borrower Employment Information']")
     public WebElement borrowerEmploymentInfoText;
 
+    @FindBy(xpath = "//input[@id='employername1']")
+    public WebElement employerName;
+
+    @FindBy(xpath = "//input[@id='position1']")
+    public WebElement employerPosition;
+
+    @FindBy(xpath = "//input[@id='city']")
+    public WebElement employerCity;
+
+    @FindBy(xpath = "//select[@id='state1']")
+    public WebElement employerState;
+
+    @FindBy(xpath = "//input[@id='start_date1']")
+    public WebElement employerStartDate;
+
+    @FindBy(xpath = "//input[@id='grossmonthlyincome']")
+    public WebElement grossMonthlyIncome;
+
+    @FindBy(xpath = "//select[@id='incomesource1']")
+    public WebElement additionalIncome;
+
+    @FindBy(xpath = "//input[@id='amount1']")
+    public WebElement incomeAmount;
+
+    @FindBy(xpath = "//p[contains(text(),'Would you like to order a credit report to help us')]")
+    public WebElement messageForCreditReport;
+
+    @FindBy(xpath = "//fieldset[@id='steps-uid-0-p-4']//h6[@class='pb-50'][normalize-space()='PreApproval Inquiry']")
+    public WebElement preapprovalInquiryText;
+
 
 }
