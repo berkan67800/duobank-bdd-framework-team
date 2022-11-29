@@ -55,7 +55,7 @@ Feature:  Mortgage Application feature
     When  I fill the Expenses step and click next button
     Then  I should be able to land Employment and Income step
 
-  Scenario: Fill the Employment and Income information
+  Scenario: Fill the Employment and Income step
     Given I add valid information to the preapproval form
     And   I click the next button
     When  I enter valid information to the Personal Information form
@@ -66,3 +66,15 @@ Feature:  Mortgage Application feature
     And   I fill the Employment and Income step with valid information
     And   I click the next button
     Then  I should be able to land Credit Report step
+
+   Scenario: Fill the Employment and Income step with invalid information
+     Given I add valid information to the preapproval form
+     And   I click the next button
+     When  I enter valid information to the Personal Information form
+     And   I click the next button
+     And   I should be able to navigate to the Expenses step
+     When  I fill the Expenses step and click next button
+     And   I should be able to land Employment and Income step
+     And   I fill the Employment and Income step with invalid information
+     And   I click the next button
+     Then  I should not be able to land Credit Report step

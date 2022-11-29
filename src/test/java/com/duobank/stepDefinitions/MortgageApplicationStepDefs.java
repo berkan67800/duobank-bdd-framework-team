@@ -163,15 +163,23 @@ public class MortgageApplicationStepDefs {
     @Then("I should be able to land Credit Report step")
     public void i_should_be_able_to_land_credit_report_step() {
 
-    Assert.assertTrue(Driver.getDriver().getPageSource().contains("Would you like to order a credit report to help us verify your eligibility for this loan ?"));
+        Assert.assertTrue(Driver.getDriver().getPageSource().contains("Would you like to order a credit report to help us verify your eligibility for this loan ?"));
+    }
 
-       // String actualResult = mortgageApplicationPage.messageForCreditReport.getText();
-       // Assert.assertEquals("Would you like to order a credit report to help us verify your eligibility for this loan ?", actualResult);
-
-        //String actualResult = new DashBoardPage().fullNameText.getText();
-        //Assert.assertEquals(firstName+" "+lastName,actualResult);
-
+    @When("I fill the Employment and Income step with invalid information")
+    public void i_fill_the_employment_and_income_step_with_invalid_information() {
+        mortgageApplicationPage.employerName.sendKeys("00000");
+        mortgageApplicationPage.employerPosition.sendKeys("00000");
+        mortgageApplicationPage.employerCity.sendKeys("----000");
+        mortgageApplicationPage.employerStartDate.sendKeys("09.01.2050");
+        mortgageApplicationPage.grossMonthlyIncome.sendKeys("-00000");
+    }
+    @Then("I should not be able to land Credit Report step")
+    public void i_should_not_be_able_to_land_credit_report_step() {
+        Assert.assertTrue(Driver.getDriver().getPageSource().contains("PreApproval Inquiry"));
+        Assert.assertFalse(Driver.getDriver().getPageSource().contains("PreApproval Inquiry"));
 
     }
+
 
 }
