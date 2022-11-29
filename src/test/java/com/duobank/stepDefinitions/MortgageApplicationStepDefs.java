@@ -165,6 +165,7 @@ public class MortgageApplicationStepDefs {
 
         Assert.assertTrue(Driver.getDriver().getPageSource().contains("Would you like to order a credit report to help us verify your eligibility for this loan ?"));
     }
+    
 
     @When("I fill the Employment and Income step with invalid information")
     public void i_fill_the_employment_and_income_step_with_invalid_information() {
