@@ -177,8 +177,8 @@ public class MortgageApplicationStepDefs {
     }
     @Then("I should not be able to land Credit Report step")
     public void i_should_not_be_able_to_land_credit_report_step() {
-        Assert.assertTrue(Driver.getDriver().getPageSource().contains("PreApproval Inquiry"));
-        Assert.assertFalse(Driver.getDriver().getPageSource().contains("PreApproval Inquiry"));
+
+        Assert.assertFalse(SeleniumUtils.elementExists(mortgageApplicationPage.applicationWizardCurrentStep,1));
 
     }
 
