@@ -29,6 +29,6 @@ Feature: Data Table Implementations
     And   I should be able to land Employment and Income step
     And   I fill the Employment and Income step following valid information
       | employerName | position | city      | state | startDate  | grossMonthlyIncome | incomeSource       | amount |
-      | John Doo     | SDET     | Chantilly | AM    | 10.01.2020 | 5000               | otherTypesOfIncome | 1750   |
+      | John Doo     | SDET     | Chantilly | AM    | 10.01.2020 | 5000               | Other Types Of Income | 1750   |
     And   I click the next button
     Then  I should be able to land Credit Report step

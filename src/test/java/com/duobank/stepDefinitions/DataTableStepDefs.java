@@ -37,7 +37,7 @@ public class DataTableStepDefs {
         //incomeSource.selectByVisibleText(dataTable.get(0).get("incomeSource"));
         Thread.sleep(2000);
         mortgageApplicationPage.incomeAmount.sendKeys(dataTable.get(0).get("amount"));
-        Thread.sleep(10000);
+        Thread.sleep(2000);
 
 
 

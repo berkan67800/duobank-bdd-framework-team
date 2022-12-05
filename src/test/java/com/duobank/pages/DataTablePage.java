@@ -29,11 +29,11 @@ public class DataTablePage {
     @FindBy(xpath = "//label[normalize-space()='Agree']")
     public WebElement agreeRadioBtn;
 
-    //@FindBy(xpath = "//label[normalize-space()='Agree']")
-    //public WebElement
+    @FindBy(xpath = "//a[normalize-space()='Save']")
+    public WebElement saveBtn;
 
-    //@FindBy(xpath = "//label[normalize-space()='Agree']")
-    //public WebElement
+    @FindBy(xpath = "//div[@class='alert alert-succes']")
+    public WebElement successfulMessage;
 
 
 
