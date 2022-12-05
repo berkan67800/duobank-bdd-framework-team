@@ -42,7 +42,6 @@ Feature: Scenario Outline Implementations
       Then  I should be able to land Credit Report step
       And   I click the next button
       And   I add the following info to eConsent page
-
         | firstName   | lastName   | email   |
         | <firstName> | <lastName> | <email> |
       And   I click Agree
