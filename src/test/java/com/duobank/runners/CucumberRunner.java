@@ -6,7 +6,7 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 @CucumberOptions(
 
-        tags = "@login",
+        tags = "@datatable", //@regression",
         features = "src/test/resources",
         glue = "com/duobank/stepDefinitions",
         stepNotifications = true,
