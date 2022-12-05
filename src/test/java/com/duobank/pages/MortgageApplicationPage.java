@@ -24,6 +24,9 @@ public class MortgageApplicationPage {
     @FindBy(xpath = "//label[@for='loanofficer1']")
     public WebElement yesForLoanOfficer;
 
+    @FindBy(id = "realtorinfo")
+    public WebElement realtorInfoField;
+
 
     @FindBy(xpath = "//label[@for='loanofficer2']")
     public WebElement NoForLoanOfficer;

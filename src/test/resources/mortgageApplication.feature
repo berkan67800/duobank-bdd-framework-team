@@ -12,7 +12,7 @@ Feature:  Mortgage Application feature
   Scenario: Fill the preapproval form
     When  I add valid information to the preapproval form
     And   I click the next button
-    Then  I should be able to see Personal Information text
+    Then  I should be able to see Personal Information step
 
 
   Scenario: Fill the preapproval form with negative information

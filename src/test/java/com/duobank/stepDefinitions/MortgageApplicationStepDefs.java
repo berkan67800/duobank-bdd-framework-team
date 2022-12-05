@@ -65,10 +65,7 @@ public class MortgageApplicationStepDefs {
         mortgageApplicationPage.nextButton.click();
     }
 
-    @Then("I should be able to see Personal Information text")
-    public void i_should_be_able_to_see_personal_information_text() {
-        Assert.assertTrue(mortgageApplicationPage.coBorroweInformationText.isDisplayed());
-    }
+
 
 
     @When("I enter invalid information to the preapproval form")
@@ -180,6 +177,11 @@ public class MortgageApplicationStepDefs {
 
         Assert.assertFalse(SeleniumUtils.elementExists(mortgageApplicationPage.applicationWizardCurrentStep,1));
 
+    }
+
+    @Then("I should be able to see Personal Information step")
+    public void i_should_be_able_to_see_personal_information_step() {
+        Assert.assertTrue(SeleniumUtils.elementExists(mortgageApplicationPage.applicationWizardCurrentStep,1));
     }
 
 
