@@ -155,7 +155,7 @@ public class MortgageApplicationStepDefs {
     Select incomeSource = new Select(mortgageApplicationPage.additionalIncome);
     incomeSource.selectByVisibleText("Social Security/Disability Income");
     mortgageApplicationPage.incomeAmount.sendKeys("700");
-    Thread.sleep(1000);
+    Thread.sleep(2000);
     }
     @Then("I should be able to land Credit Report step")
     public void i_should_be_able_to_land_credit_report_step() {

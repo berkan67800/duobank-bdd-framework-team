@@ -165,5 +165,28 @@ public class MortgageApplicationPage {
     @FindBy(xpath = "//fieldset[@id='steps-uid-0-p-4']//h6[@class='pb-50'][normalize-space()='PreApproval Inquiry']")
     public WebElement preapprovalInquiryText;
 
+    @FindBy(xpath = "//label[@for='creditreport2']")
+    public WebElement noForCreditReport;
+
+  //  @FindBy(xpath = "//a[normalize-space()='Next']")
+    //public WebElement nextButton;
+
+    @FindBy(xpath = "//input[@id='eConsentdeclarerFirstName']")
+    public WebElement eConsentFirstName;
+
+    @FindBy(xpath = "//input[@id='eConsentdeclarerLastName']")
+    public WebElement eConsentLastName;
+
+    @FindBy(xpath = "//input[@id='eConsentdeclarerEmail']")
+    public WebElement eConcentEmail;
+
+    @FindBy(xpath = "//label[normalize-space()='Agree']")
+    public WebElement agreeRadioBtn;
+
+    @FindBy(xpath = "//a[normalize-space()='Save']")
+    public WebElement saveBtn;
+
+    @FindBy(xpath = "//div[@class='alert alert-succes']")
+    public WebElement successfulMessage;
 
 }
