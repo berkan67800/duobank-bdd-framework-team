@@ -6,14 +6,15 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 @CucumberOptions(
 
-        tags = "@login",
+        tags = "@sprint4",
         features = "src/test/resources",
         glue = "com/duobank/stepDefinitions",
         stepNotifications = true,
         plugin = {
-
-                "html:target/cucumber-built-in-report/report.html",  // generates a built-in cucumber html report
-
+                "pretty",
+                "html:target/cucumber-built-in-report/report.html",
+                "json:target/jsonReport.json",
+                "rerun:target/failedScenarioList.txt"
         }
         //, dryRun = true  // to generate step definition snippets without running the test
 
