@@ -1,4 +1,4 @@
-@datatable @regression
+@sprint4
 Feature: Data Table Implementations
 
 
@@ -11,7 +11,8 @@ Feature: Data Table Implementations
   Scenario: Fill the preapproval form with Data Table info
     When  I add the following info to the preapproval form
       | realtorName | purchasePrice | downPayment |
-      | John Parker | 5000          | 50000       |
+      | John Parker | 500000        | 50000       |
+
     And   I click the next button
     Then  I should be able to see Personal Information step
 
