@@ -1,8 +1,6 @@
 package com.duobank.stepDefinitions;
 
-import com.duobank.pages.DataTablePage;
 import com.duobank.pages.MortgageApplicationPage;
-import com.duobank.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -34,32 +32,32 @@ public class ScenarioOutlineStepDefs {
 
     @Then("I add the following info to eConsent page")
     public void i_add_the_following_info_to_e_consent_page(List<Map<String, String>> dataTable) {
-        DataTablePage dataTablePage = new DataTablePage();
+        MortgageApplicationPage mortgageApplicationPage = new MortgageApplicationPage();
 
         Map<String, String> map = dataTable.get(0);
         System.out.println(dataTable.get(0));
 
-        dataTablePage.eConsentFirstName.sendKeys(map.get("firstName"));
-        dataTablePage.eConsentLastName.sendKeys(map.get("lastName"));
-        dataTablePage.eConcentEmail.sendKeys(map.get("email"));
+        mortgageApplicationPage.eConsentFirstName.sendKeys(map.get("firstName"));
+        mortgageApplicationPage.eConsentLastName.sendKeys(map.get("lastName"));
+        mortgageApplicationPage.eConcentEmail.sendKeys(map.get("email"));
 
     }
     @Then("I click Agree")
     public void i_click_agree() {
-        DataTablePage dataTablePage = new DataTablePage();
-        dataTablePage.agreeRadioBtn.click();
+        MortgageApplicationPage mortgageApplicationPage = new MortgageApplicationPage();
+        mortgageApplicationPage.agreeRadioBtn.click();
 
     }
 
     @Then("I click save button")
     public void i_click_save_button() {
-        DataTablePage dataTablePage = new DataTablePage();
-        dataTablePage.saveBtn.click();
+        MortgageApplicationPage mortgageApplicationPage = new MortgageApplicationPage();
+        mortgageApplicationPage.saveBtn.click();
     }
     @Then("I should get teh successful message")
     public void i_should_get_teh_successful_message() {
-        DataTablePage dataTablePage = new DataTablePage();
-        Assert.assertTrue(dataTablePage.successfulMessage.isDisplayed());
+        MortgageApplicationPage mortgageApplicationPage = new MortgageApplicationPage();
+        Assert.assertTrue(mortgageApplicationPage.successfulMessage.isDisplayed());
 
     }
 
