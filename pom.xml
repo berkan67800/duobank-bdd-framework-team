@@ -58,7 +58,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.3.0</version>
+            <version>5.3.1</version>
         </dependency>
 
 
@@ -90,43 +90,44 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>
-                            <include>**/*CucumberRunner.java</include>
+<!--                            <include>**/*CucumberRunner.java</include>-->
 <!--                        <include>**/*FailedScenarioRunner.java</include>-->
                                            <!--                         To run tests in parallel-->
-                        <!--                        <include>**/*ParallelFeatureRunner.java</include>-->
+<!--                                                <include>**/*ParallelFeatureRunner.java</include>-->
 <!--                    when running multiple classes, the class name can be passed thru cmd using the placeholder  -->
-                        <!--                        <include>${className}</include>-->
+                                                <!--suppress UnresolvedMavenProperty -->
+                                                 <include>${className}</include>
                     </includes>
-                    <!--                       These 2 options have to added when running tests in parallel -->
-                    <!--                         <parallel>methods</parallel>-->
-                    <!--                         <useUnlimitedThreads>true</useUnlimitedThreads>-->
+<!--                                           These 2 options have to added when running tests in parallel -->
+<!--                                             <parallel>methods</parallel>-->
+<!--                                             <useUnlimitedThreads>true</useUnlimitedThreads>-->
 </configuration>
 </plugin>
-<!--            <plugin>-->
-<!--<groupId>net.masterthought</groupId>-->
-<!--<artifactId>maven-cucumber-reporting</artifactId>-->
-<!--<version>5.7.4</version>-->
-<!--<executions>-->
-<!-- <execution>-->
-<!--     <id>execution</id>-->
-<!--     <phase>verify</phase>-->
-<!--     <goals>-->
-<!--         <goal>generate</goal>-->
-<!--     </goals>-->
-<!--     <configuration>-->
-<!--         <projectName>Duobank</projectName>-->
-<!--         &lt;!&ndash; output directory for the generated report &ndash;&gt;-->
-<!--                            <outputDirectory>${project.build.directory}/pretty-report</outputDirectory>-->
-<!--                            &lt;!&ndash; folder where it looks for json file needed to generate this report &ndash;&gt;-->
-<!--                            <inputDirectory>${project.build.directory}</inputDirectory>-->
-<!--                            <jsonFiles>-->
-<!--                                &lt;!&ndash; name of the json file, could also be a pattern &ndash;&gt;-->
-<!--                                <param>**/*.json</param>-->
-<!--                            </jsonFiles>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <plugin>
+<groupId>net.masterthought</groupId>
+<artifactId>maven-cucumber-reporting</artifactId>
+<version>5.7.4</version>
+<executions>
+ <execution>
+     <id>execution</id>
+     <phase>verify</phase>
+     <goals>
+         <goal>generate</goal>
+     </goals>
+     <configuration>
+         <projectName>Duobank</projectName>
+         <!-- output directory for the generated report -->
+                            <outputDirectory>${project.build.directory}/pretty-report</outputDirectory>
+                            <!-- folder where it looks for json file needed to generate this report -->
+                            <inputDirectory>${project.build.directory}</inputDirectory>
+                            <jsonFiles>
+                                <!-- name of the json file, could also be a pattern -->
+                                <param>**/*.json</param>
+                            </jsonFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
