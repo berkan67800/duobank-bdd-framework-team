@@ -1,3 +1,4 @@
+@scenarioOutline @sprint4
 Feature: Scenario Outline Implementations
 
 
@@ -7,7 +8,7 @@ Feature: Scenario Outline Implementations
     Then I enter valid login credentials
     And I click Mortgage Application option from the left menu
 
-  @scenarioOutline
+
   Scenario Outline: Fill the Personal Information form with valid data
     When  I add valid information to the preapproval form
     And   I click the next button
