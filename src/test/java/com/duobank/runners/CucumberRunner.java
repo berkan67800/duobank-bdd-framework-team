@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 
 
-        tags = "@sprint4",
+        tags = "@api", //"@sprint4",
         features = "src/test/resources",
         glue = "com/duobank/stepDefinitions",
         stepNotifications = true,
