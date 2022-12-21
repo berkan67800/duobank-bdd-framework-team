@@ -6,6 +6,9 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import java.util.List;
+import java.util.Map;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
@@ -41,6 +44,39 @@ public class ApiStepDefs {
                 statusCode(equalTo(statuscode)).
                 body(key, equalTo(value));
     }
+
+
+
+    @Given("Given I login with existing  {string} and {string}")
+
+        public void given_i_login_with_existing_and(String email, String password) {
+        email = "tomhil4@inbox.ru";
+        password = "tomhil";
+
+        baseURI = "http://qa-duobank.us-east-2.elasticbeanstalk.com/api";
+        requestSpecification = given().log().all().
+                header("Accept", "application/json").
+                header("Content-Type", "application/json").
+                body("{ \n" +
+                        "\"email\": \"tomhil4@inbox.ru\",\n" +
+                        "\"password\": \"tomhil\"\n" +
+                        "}");
+
+    }
+    @When("I send a request to {string}")
+    public void i_send_a_request_to(String endpoint) {
+        response = requestSpecification.when().log().all().
+                post(endpoint);
+    }
+    @Then("the success code should be {int} and and {string} body should be  {string}")
+    public void the_success_code_should_be_and_and_body_should_be(Integer success, String key, String value) {
+        response.then().log().all().
+                assertThat().
+                statusCode(equalTo(success)).
+                body(key, equalTo(value));
+
+    }
+
 
 
 
