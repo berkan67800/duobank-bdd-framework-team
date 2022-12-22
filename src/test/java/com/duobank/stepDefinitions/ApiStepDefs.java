@@ -1,13 +1,21 @@
 package com.duobank.stepDefinitions;
 
+import com.duobank.utilities.ConfigReader;
+import com.github.javafaker.Faker;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.it.Ma;
+import io.restassured.common.mapper.TypeRef;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.assertj.core.api.SoftAssertions;
+import org.junit.Assert;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -18,7 +26,7 @@ public class ApiStepDefs {
 
     @Given("the base URI is initialized and headers are {string} {string} and {string} {string}")
     public void the_base_uri_is_initialized_and_headers_are_and(String key, String value, String key2, String value2) {
-        baseURI = "http://qa-duobank.us-east-2.elasticbeanstalk.com/api";
+
 
 
         requestSpecification = given().log().all().
@@ -31,83 +39,117 @@ public class ApiStepDefs {
                         "\n" +
                         "}");
     }
-    @When("I send a POST request to {string}")
-    public void i_send_a_post_request_to(String endpoint) {
-        response = requestSpecification.when().log().all().
-                post(endpoint);
-    }
-    @Then("the status code should be {int} and {string} body should be  {string}")
-    public void the_status_code_should_be_and_body_should_be(Integer statuscode, String key, String value) {
 
-        response.then().log().all().
+
+    String token;
+    @Then("the status code should be {int} and body should be as in the table")
+    public void the_status_code_should_be_and_body_should_be_as_in_the_table(Integer statusCode, List<List<String>> dataTable) {
+        
+        Map<String,Object> map =response.then().log().all().
                 assertThat().
-                statusCode(equalTo(statuscode)).
-                body(key, equalTo(value));
+                statusCode(equalTo(statusCode)).extract().as(Map.class);
+
+        SoftAssertions softAssert = new SoftAssertions();
+        for (List<String> tableEntry:dataTable) {
+            softAssert.assertThat(map.get(tableEntry.get(0)).equals(tableEntry.get(1)));
+        }
+        softAssert.assertAll();
+
+        if(map.containsKey("token")){
+            token = (String) map.get("token");
+        }
+
+
+
+
     }
 
 
 
-    @Given("Given I login with existing  {string} and {string}")
+    @Given("Given I login with existing  email and password")
 
-        public void given_i_login_with_existing_and(String email, String password) {
-        email = "tomhil4@inbox.ru";
-        password = "tomhil";
+        public void given_i_login_with_existing_and() {
 
-        baseURI = "http://qa-duobank.us-east-2.elasticbeanstalk.com/api";
+
+
         requestSpecification = given().log().all().
                 header("Accept", "application/json").
                 header("Content-Type", "application/json").
-                body("{ \n" +
-                        "\"email\": \"tomhil4@inbox.ru\",\n" +
-                        "\"password\": \"tomhil\"\n" +
-                        "}");
+                body(Map.of("email",ConfigReader.getProperty("email"),
+                            "password",ConfigReader.getProperty("password")
+                ));
 
     }
+
+
+    @Given("headers are {string} {string}  {string} {string} and user credentials randomly generated")
+    public void headers_are_and_user_credentials_randomly_generated(String key, String value, String key2, String value2) {
+        Faker faker = new Faker();
+
+        requestSpecification = given().log().all().
+                header(key, value).
+                header(key2, value2).
+                body(Map.of("first_name",faker.name().firstName(),
+                            "last_name",faker.name().lastName(),
+                            "email",faker.internet().emailAddress(),
+                            "password",faker.internet().password()
+                        ));
+
+
+    }
+
     @When("I send a request to {string}")
-    public void i_send_a_request_to(String endpoint) {
-        response = requestSpecification.when().log().all().
-                post(endpoint);
-    }
-    @Then("the success code should be {int} and and {string} body should be  {string}")
-    public void the_success_code_should_be_and_and_body_should_be(Integer success, String key, String value) {
-        response.then().log().all().
-                assertThat().
-                statusCode(equalTo(success)).
-                body(key, equalTo(value));
+    public void iSendARequestTo(String endpoint) {
 
-    }
-
-
-
-
- /*       RequestSpecification requestSpecification;
-        Response response;
-
-        @Given("the base URI is initialized and header is {string} {string}")
-        public void the_base_uri_is_initialized_and_header_is(String key, String value) {
-
-            baseURI = "https://api.github.com";
-
-            requestSpecification = given().
-                    header(key, value);
-
+        switch(endpoint) {
+            case "/register.php":
+                response = requestSpecification.when().log().all().
+                        post(endpoint);
+                break;
+            case "/login.php":
+                response = requestSpecification.when().log().all().
+                        post(endpoint);
+                break;
+            case "/getmortagage.php":
+                response = requestSpecification.header("Authorization", token).when().log().all().
+                        get(endpoint);
+                break;
+            case "/mortagagedetails.php":
+                JsonPath jsonPath = response.jsonPath();
+                Integer id = jsonPath.getInt("mortagage_applications[0].id");
+                response = requestSpecification.body(Map.of("id",id)).when().log().all().
+                        post(endpoint);
+                break;
         }
-        @When("I send a GET request to {string}")
-        public void i_send_a_get_request_to(String endpoint) {
-
-            response = requestSpecification.
-                    when().log().all().
-                    get(endpoint);
-
-        }
-        @Then("the status code should be {int} and {string} value in the body should be  {string}")
-        public void the_status_code_should_be_and_value_should_be(Integer statusCode, String key, String value) {
-            response.
-                    then().log().all().
-                    assertThat().
-                    statusCode(equalTo(statusCode)).
-                    body(key, equalTo(value));
-
-        }  */
     }
+
+    @Then("the mortgage application should have keys as in the table")
+    public void the_mortgage_application_should_have_keys_as_in_the_table(List<String> expected) {
+        Map responseBody = response.as(new TypeRef<Map<String, Object>>() {});
+        List<Map<String,Object>> mortagage_applications = (List<Map<String, Object>>) responseBody.get("mortagage_applications");
+
+
+        List<String> actual = new ArrayList<>(mortagage_applications.get(0).keySet());
+
+        System.out.println(actual);
+        System.out.println(expected);
+        Assert.assertEquals(expected,actual);
+    }
+
+    @And("for the first mortgage application details the single_application should contain keys  in the table")
+    public void forTheFirstMortgageApplicationDetailsTheSingle_applicationShouldHaveKeysAsInTheTable(List<String> keys) {
+
+
+        Map responseBody = response.then().log().all().extract().as(new TypeRef<Map<String, Object>>() {});
+        Map <String,Object> single_application = (Map<String, Object>) responseBody.get("single_application");
+        List actual = new ArrayList(single_application.keySet());
+
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        for (String key : keys) {
+            softAssertions.assertThat(actual.contains(key));
+        }
+       softAssertions.assertAll();
+    }
+}
     
