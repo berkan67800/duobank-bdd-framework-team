@@ -9,10 +9,12 @@ import org.openqa.selenium.TakesScreenshot;
 
 import java.time.Duration;
 
+import static io.restassured.RestAssured.baseURI;
+
 public class Hooks {
 
 
-    @Before ("not @db_only")
+    @Before ("not @api")
     public void setupScenario(){
 
         Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -24,7 +26,10 @@ public class Hooks {
 
     @BeforeAll
     public static void setupDb(){
+
         DBUtils.createConnection();
+        baseURI = "http://qa-duobank.us-east-2.elasticbeanstalk.com/api";
+
     }
     //
     @AfterAll
@@ -33,7 +38,7 @@ public class Hooks {
     }
 
 
-    @After ("not @db_only")
+    @After ("not @api")
     public void tearDownScenario(Scenario scenario){
 
         if(scenario.isFailed()) {
